@@ -2,6 +2,7 @@ package org.pismo.account.facade
 
 import org.pismo.account.context.AccountCreateContext
 import org.pismo.account.dto.AccountRequest
+import org.pismo.account.dto.AccountResponse
 import org.pismo.account.mapper.AccountMapper
 import org.pismo.account.service.AccountService
 import org.springframework.stereotype.Service
@@ -11,11 +12,12 @@ class AccountCreateFacade(
     private val accountService: AccountService,
 ): BaseFacade() {
 
-    fun createAccount(request: AccountRequest): AccountCreateContext {
+    fun createAccount(request: AccountRequest): AccountResponse {
         return AccountCreateContext(request)
             .execAndLog(::createAccount)
             .execAndLog(::saveAccount)
             .execAndLog(::createResponse)
+            .let { it.accountResponse!! }
     }
 
     private fun createAccount(context: AccountCreateContext) =

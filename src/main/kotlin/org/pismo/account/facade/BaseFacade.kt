@@ -4,6 +4,7 @@ import kotlin.jvm.internal.CallableReference
 import org.pismo.account.config.MapperLogConfiguration
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.dao.DataIntegrityViolationException
 
 open class BaseFacade {
 
@@ -16,7 +17,8 @@ open class BaseFacade {
         return try {
             func(this).also { r -> logger.info("Method: {}, Param: {}", method, logMapper.writeValueAsString(r)) }
         } catch (ex: Throwable) {
-            logger.error("Method: {}, Exception: {}, Context: {}", method, ex, logMapper.writeValueAsString(this!!))
+            val message = if(ex is DataIntegrityViolationException) ex.message?.split("VALUES")?.first() else ex.message
+            logger.error("Method: {}, Exception: {}, Context: {}", method, message, logMapper.writeValueAsString(this!!))
             throw ex
         }
     }
