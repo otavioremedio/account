@@ -55,5 +55,5 @@ C:.
 * POST http://localhost:8080/transactions
 
 ### Endpoints de apoio:
-*H2 http://localhost:8080/h2-console (ulr: jdbc:h2:mem:testdb / user: sa / pass: )
-*Swagger http://localhost:8080/h2-console (ulr: jdbc:h2:mem:testdb / user: sa / pass: )
+* H2 http://localhost:8080/h2-console (ulr: jdbc:h2:mem:testdb / user: sa / pass: )
+* Swagger http://localhost:8080/h2-console (ulr: jdbc:h2:mem:testdb / user: sa / pass: )
