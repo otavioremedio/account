@@ -1,8 +1,8 @@
 package org.pismo.account.mapper
 
 import org.pismo.account.domain.Account
-import org.pismo.account.dto.AccountRequest
-import org.pismo.account.dto.AccountResponse
+import org.pismo.account.org.pismo.account.dto.AccountRequest
+import org.pismo.commons.dto.AccountResponse
 
 object AccountMapper {
 

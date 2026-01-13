@@ -1,8 +1,10 @@
-package org.pismo.account.org.pismo.account.dto
+package org.pismo.commons.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class AccountRequest(
+data class AccountResponse(
+    @field:JsonProperty("account_id")
+    val accountId: Long,
     @field:JsonProperty("document_number")
     val documentNumber: String
 )

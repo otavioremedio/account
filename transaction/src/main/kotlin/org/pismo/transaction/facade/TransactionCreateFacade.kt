@@ -1,11 +1,11 @@
 package org.pismo.transaction.facade
 
-import org.pismo.account.service.AccountService
 import org.pismo.commons.facade.BaseFacade
 import org.pismo.transaction.context.TransactionCreateContext
 import org.pismo.transaction.dto.TransactionRequest
 import org.pismo.transaction.dto.TransactionResponse
 import org.pismo.transaction.mapper.TransactionMapper
+import org.pismo.transaction.org.pismo.transaction.service.IntegrationService
 import org.pismo.transaction.service.OperationService
 import org.pismo.transaction.service.TransactionService
 import org.springframework.stereotype.Service
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service
 @Service
 class TransactionCreateFacade(
     private val operationService: OperationService,
-    private val accountService: AccountService,
+    private val integrationService: IntegrationService,
     private val transactionService: TransactionService,
 ): BaseFacade() {
     fun createTransaction(request: TransactionRequest): TransactionResponse {
@@ -27,7 +27,7 @@ class TransactionCreateFacade(
     }
 
     private fun findAccount(context: TransactionCreateContext) =
-        accountService.findById(context.request.accountId)
+        integrationService.getAccount(context.request.accountId)
             .let(context::addAccount)
 
     private fun findOperationType(context: TransactionCreateContext) =

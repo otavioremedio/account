@@ -1,9 +1,8 @@
 package component.test
 
-import component.config.AccountTestConfig
 import component.config.BaseTest
 import component.config.TransactionTestConfig
-import component.provider.AccountProvider
+import component.wiremock.AccountStubs
 import io.restassured.RestAssured.given
 import java.math.BigDecimal
 import org.hamcrest.Matchers.containsString
@@ -15,18 +14,16 @@ import org.pismo.transaction.repository.TransactionRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 
-@ContextConfiguration(classes = [TransactionTestConfig::class, AccountTestConfig::class])
+@ContextConfiguration(classes = [TransactionTestConfig::class])
 class TransactionTest: BaseTest() {
-
-    @Autowired
-    private lateinit var accountProvider: AccountProvider
 
     @Autowired
     private lateinit var transactionRepository: TransactionRepository
 
     @Test
     fun `POST transactions - should create transaction when input valid`() {
-        val account = accountProvider.create("22233344455")
+
+        val account = AccountStubs.stubAccountSuccess()
 
         val payload = JSONObject()
             .put("account_id", account.accountId)
@@ -40,7 +37,7 @@ class TransactionTest: BaseTest() {
         .then()
             .statusCode(201)
             .body("transaction_id", notNullValue())
-            .body("account_id", equalTo(account.accountId!!.toInt()))
+            .body("account_id", equalTo(account.accountId.toInt()))
             .body("operation_type_id", equalTo(1))
             .body("amount", equalTo(BigDecimal.valueOf(150.75).toDouble().toFloat()))
 
@@ -50,7 +47,7 @@ class TransactionTest: BaseTest() {
 
     @Test
     fun `POST transactions - should return error when operation type invalid`() {
-        val account = accountProvider.create("33344455566")
+        val account = AccountStubs.stubAccountSuccess()
 
         val payload = JSONObject()
             .put("account_id", account.accountId)
