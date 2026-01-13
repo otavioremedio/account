@@ -53,7 +53,7 @@ class AccountTest: BaseTest() {
     }
 
     @Test
-    fun `GET accounts by id - should return 404 when not found`() {
+    fun `GET accounts by id - should return 400 when not found`() {
         given()
             .contentType(ContentType.JSON)
         .`when`()
