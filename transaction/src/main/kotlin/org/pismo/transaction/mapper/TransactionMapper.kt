@@ -20,18 +20,11 @@ object TransactionMapper {
         )
     }
 
-
-    fun toResponse(transaction: Transaction): TransactionResponse {
-        val type = TransactionTypeEnum.fromId(transaction.operationTypeId.id)
-
-        return TransactionResponse(
+    fun toResponse(transaction: Transaction) = TransactionResponse(
             transactionId = transaction.transactionId!!,
             accountId = transaction.accountId,
             operationTypeId = transaction.operationTypeId.id,
-            amount = when(type) {
-                TransactionTypeEnum.DEBIT -> transaction.amount.abs()
-                else -> transaction.amount.abs()
-            }
+            amount = transaction.amount.abs()
         )
-    }
+
 }
