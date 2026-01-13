@@ -13,40 +13,94 @@ Serviço responsável pelo gerenciamento de contas e transações
 
 ```
 C:.
-└───src
-    ├───main
-    │   ├───kotlin
-    │   │   └───org
-    │   │       └───pismo
-    │   │           └───account
-    │   │               ├───aspect
-    │   │               ├───config
-    │   │               ├───context
-    │   │               ├───controller
-    │   │               ├───domain
-    │   │               ├───dto
-    │   │               ├───encode
-    │   │               ├───enum
-    │   │               ├───exception
-    │   │               ├───facade
-    │   │               ├───mapper
-    │   │               ├───repository
-    │   │               └───service
-    │   └───resources
-    └───test
-        ├───kotlin
-        │   └───component
-        │       ├───config
-        │       ├───provider
-        │       └───test
-        └───resources
+├───account
+│   └───src
+│       ├───main
+│       │   ├───kotlin
+│       │   │   └───org
+│       │   │       └───pismo
+│       │   │           └───account
+│       │   │               ├───config
+│       │   │               ├───context
+│       │   │               ├───controller
+│       │   │               ├───domain
+│       │   │               ├───dto
+│       │   │               ├───encode
+│       │   │               ├───facade
+│       │   │               ├───mapper
+│       │   │               ├───repository
+│       │   │               └───service
+│       │   └───resources
+│       ├───test
+│       │   ├───kotlin
+│       │   │   └───component
+│       │   │       └───test
+│       │   └───resources
+│       └───testFixtures
+│           └───kotlin
+│               └───component
+│                   ├───config
+│                   └───provider
+├───app
+│   └───src
+│       ├───main
+│       │   ├───kotlin
+│       │   └───resources
+│       └───test
+│           ├───kotlin
+│           └───resources
+├───commons
+│   └───src
+│       ├───main
+│       │   ├───kotlin
+│       │   │   └───org
+│       │   │       └───pismo
+│       │   │           └───commons
+│       │   │               ├───aspect
+│       │   │               ├───config
+│       │   │               ├───encode
+│       │   │               ├───exception
+│       │   │               └───facade
+│       │   └───resources
+│       ├───test
+│       │   ├───kotlin
+│       │   └───resources
+│       └───testFixtures
+│           └───kotlin
+│               └───component
+│                   └───config
+└───transaction
+    └───src
+        ├───main
+        │   ├───kotlin
+        │   │   └───org
+        │   │       └───pismo
+        │   │           └───transaction
+        │   │               ├───context
+        │   │               ├───controller
+        │   │               ├───domain
+        │   │               ├───dto
+        │   │               ├───enum
+        │   │               ├───facade
+        │   │               ├───mapper
+        │   │               ├───repository
+        │   │               └───service
+        │   └───resources
+        └───test
+            ├───kotlin
+            │   └───component
+            │       ├───config
+            │       ├───provider
+            │       └───test
+            └───resources
+
 ```
 
 ### Build do projeto e execução local via docker
 
 ```bash
-  docker build -t pismo-account-api:latest .
-  docker run -p 8080:8080 pismo-account-api:latest
+  docker build -t pismo-app:latest .
+  docker run -p 8080:8080 pismo-app:latest
 ```
 
 ### Endpoints:
