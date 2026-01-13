@@ -1,4 +1,4 @@
-# Pismo Account
+# Pismo App
 
 Serviço responsável pelo gerenciamento de contas e transações 
 
@@ -110,4 +110,4 @@ C:.
 
 ### Endpoints de apoio:
 * H2 http://localhost:8080/h2-console (ulr: jdbc:h2:mem:testdb / user: sa / pass: )
-* Swagger http://localhost:8080/h2-console (ulr: jdbc:h2:mem:testdb / user: sa / pass: )
+* Swagger http://localhost:8080/swagger-ui/index.html
