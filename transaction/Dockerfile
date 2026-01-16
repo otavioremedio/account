@@ -5,6 +5,9 @@ COPY gradlew .
 COPY gradle gradle
 COPY build.gradle.kts .
 COPY settings.gradle.kts .
+
+RUN ./gradlew dependencies --no-daemon
+
 COPY commons commons
 COPY transaction transaction
 
